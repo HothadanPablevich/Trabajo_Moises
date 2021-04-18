@@ -6,7 +6,7 @@ public static Scanner tec = new Scanner(System.in);
 
 	private boolean [][] matriz= new boolean[10][7];
 	private String [] personas= new String[10];
-	private String [] hobbies= new String[10];
+	private final String [] hobbies= {"AAAA","BBBB","CCCC","DDDD","EEEE","FFFF","GGGG"};
 	public Matriz() {
 		
 	}
@@ -18,7 +18,9 @@ public static Scanner tec = new Scanner(System.in);
 	public void setMatriz(boolean[][] matriz) {
 		this.matriz = matriz;
 	}
-	public void setMatriz() {}
+	public void setMatriz() {
+		fillMatrixTec();
+	}
 		/////Personas//////
 	public String[] getPersonas() {
 		return personas;
@@ -58,17 +60,21 @@ public static Scanner tec = new Scanner(System.in);
 		}
 		
 	}
-	
-
-
-	public void fillMatrixTec() {
+	private void fillMatrixTec() {
 		int matrixLength=this.matriz.length;
 		int matrixColLength=this.matriz[1].length;
-		
+		String opinion;
 		for (int i = 0; i <matrixLength ; i++) {
+			System.out.println(this.personas[i]);
 			for (int j = 0; j <matrixColLength; j++) {
-				System.out.println("Write the elements [" + i + "," + j + "]");
-				this.matriz[i][j] = tec.nextBoolean();
+				System.out.println(" likes " + this.hobbies[j] +" ?");
+				opinion=tec.nextLine();
+				if(opinion.equalsIgnoreCase("yes")||opinion.equalsIgnoreCase("y")) {
+					this.matriz[i][j] = true;	
+				}
+				else {
+					this.matriz[i][j] = false;
+				}
 
 			}
 		}
