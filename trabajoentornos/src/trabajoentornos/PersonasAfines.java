@@ -12,7 +12,6 @@ public class PersonasAfines {
 				{ false, true, false, true, true, false, true }, { false, true, false, true, true, false, true } };
 
 		int cont1 = 0;
-		Matriz m1 = new Matriz(mat);
 		
 		System.out.println(esAfin(mat,5,4));
 		
