@@ -4,29 +4,27 @@ import java.util.Scanner;
 
 public class Matriz {
 	public static Scanner tec = new Scanner(System.in);
-
 	private boolean matriz[][];
-	
+
 	public Matriz(boolean matriz[][]) {
-		this.matriz=matriz;
+		this.matriz = matriz;
 	}
-	
-	
-public static void fillArrayKeyboard(int [][]m) {
+
+	public void fillMatrixTec() {
+		int matrixLength=this.matriz.length;
+		int matrixColLength=this.matriz[1].length;
 		
-		
-		for (int i = 0 ; i < m.length ; i++ ) {
-			
-	  		    for (int j = 0 ; j < m[i].length ; j++ )
-	  		    {
-	  		    	System.out.println("Write the element [" +i+ "," +j+ "]");
-	  	  			m[i][j]=tec.nextInt();
-		
-	  		    }
+		for (int i = 0; i <matrixLength ; i++) {
+			for (int j = 0; j <matrixColLength; j++) {
+				System.out.println("Write the elements [" + i + "," + j + "]");
+				this.matriz[i][j] = tec.nextBoolean();
+
+			}
 		}
-	tec.nextLine();
+		tec.nextLine();
 
 	}
-	
-
 }
+
+
+
