@@ -1,5 +1,6 @@
 package trabajoentornos;
 
+import java.util.Arrays;
 import java.util.Scanner;
 public class Matriz {
 public static Scanner tec = new Scanner(System.in);
@@ -8,9 +9,11 @@ public static Scanner tec = new Scanner(System.in);
 	private String [] personas= new String[10];
 	private final String [] hobbies= {"AAAA","BBBB","CCCC","DDDD","EEEE","FFFF","GGGG"};
 	public Matriz() {
+		fillPersonasArray();
+		fillMatrixBoolTec();
 		
 	}
-	///Setters///
+//////Setters///
 		/////Matriz//////
 	public boolean[][] getMatriz() {
 		return matriz;
@@ -18,8 +21,8 @@ public static Scanner tec = new Scanner(System.in);
 	public void setMatriz(boolean[][] matriz) {
 		this.matriz = matriz;
 	}
-	public void setMatriz() {
-		fillMatrixTec();
+	public void setMatriz(int person, int hobbie, boolean taste) {
+		this.matriz[person][hobbie] = taste;
 	}
 		/////Personas//////
 	public String[] getPersonas() {
@@ -39,9 +42,14 @@ public static Scanner tec = new Scanner(System.in);
 		return hobbies;
 	}
 	public void setHobbies(String[] hobbies) {
-		this.hobbies = hobbies;
+		//this.hobbies = hobbies;
 	}
-//////Methods/////
+//////////////ToString///////
+	public String toString() {
+		return "Matriz [matriz=" + Arrays.toString(matriz) + ", personas=" + Arrays.toString(personas) + ", hobbies="
+				+ Arrays.toString(hobbies) + "]";
+	}	
+//////Methods///
 	private void fillMatrixBoolRandom() {
 		int matrixLength= this.matriz.length;
 		int matrixColLength= this.matriz[1].length;
@@ -60,7 +68,7 @@ public static Scanner tec = new Scanner(System.in);
 		}
 		
 	}
-	private void fillMatrixTec() {
+	private void fillMatrixBoolTec() {
 		int matrixLength=this.matriz.length;
 		int matrixColLength=this.matriz[1].length;
 		String opinion;
@@ -70,10 +78,10 @@ public static Scanner tec = new Scanner(System.in);
 				System.out.println(" likes " + this.hobbies[j] +" ?");
 				opinion=tec.nextLine();
 				if(opinion.equalsIgnoreCase("yes")||opinion.equalsIgnoreCase("y")) {
-					this.matriz[i][j] = true;	
+					this.setMatriz(i, j, true);	
 				}
 				else {
-					this.matriz[i][j] = false;
+					this.setMatriz(i, j, false);
 				}
 
 			}
@@ -81,6 +89,25 @@ public static Scanner tec = new Scanner(System.in);
 		tec.nextLine();
 
 	}
+	private void fillPersonasArray() {
+		int arrayLength = this.personas.length;
+		String name;
+		for(int i=0; i<arrayLength; i++) {
+			System.out.println("Give me " +(arrayLength-i)+" people");
+			name= tec.nextLine();
+			this.setPersonas(name, i);
+		}
+	}
+	private void fillHobbiesArray() {
+		int arrayLength = this.hobbies.length;
+		String name;
+		for(int i=0; i<arrayLength; i++) {
+			System.out.println("Give me " +(arrayLength-i)+" hobbies");
+			name= tec.nextLine();
+			this.setHobbies(name, i);
+		}
+	}
+	
 }
 
 
