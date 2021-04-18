@@ -9,6 +9,7 @@ public class prueba {
 
 		Matriz a= new  Matriz();
 		System.out.println(a);
+		a.muestraMatrix();
 		
 		
 		

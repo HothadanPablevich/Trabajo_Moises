@@ -10,7 +10,8 @@ public static Scanner tec = new Scanner(System.in);
 	private final String [] hobbies= {"AAAA","BBBB","CCCC","DDDD","EEEE","FFFF","GGGG"};
 	public Matriz() {
 		fillPersonasArray();
-		fillMatrixBoolTec();
+		//fillMatrixBoolTec();
+		fillMatrixBoolRandom();
 		
 	}
 //////Setters///
@@ -46,7 +47,7 @@ public static Scanner tec = new Scanner(System.in);
 	}
 //////////////ToString///////
 	public String toString() {
-		return "Matriz [matriz=" + Arrays.toString(matriz) + ", personas=" + Arrays.toString(personas) + ", hobbies="
+		return "   personas=" + Arrays.toString(personas) + ", hobbies="
 				+ Arrays.toString(hobbies) + "]";
 	}	
 //////Methods///
@@ -106,6 +107,18 @@ public static Scanner tec = new Scanner(System.in);
 			name= tec.nextLine();
 			this.setHobbies(name, i);
 		}
+	}
+	
+	public void muestraMatrix() 
+	{
+	    int i,j;
+	    for (i = 0; i < matriz.length;i ++) 
+	    {
+	        for (j = 0; j < matriz[i].length; j++) 
+	            System.out.print(matriz[i][j]+" ");
+	        System.out.print("\n");
+	    }
+	    System.out.println("");
 	}
 	
 }
