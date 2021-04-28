@@ -12,7 +12,7 @@ public class prueba {
 		System.out.println(a);
 		a.muestraMatrix();
 
-		System.out.println(a.esAfin(0, 1));
+		a.esAfin("paco", "ana2");
 
 	}
 
