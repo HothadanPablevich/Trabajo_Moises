@@ -19,7 +19,7 @@ import java.awt.event.MouseEvent;
 public class MainScreen extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	protected JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;

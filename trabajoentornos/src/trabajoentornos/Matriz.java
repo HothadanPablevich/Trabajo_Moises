@@ -4,57 +4,128 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * Esta clase define una matriz que determina si a una persona le gusta o no un hobby y resuelve si una persona dada es afin con otra
+ * @author Babel
+ * @version 1.2
+ */
+
 public class Matriz {
 	public static Scanner tec = new Scanner(System.in);
+
+//////Campos de la clase///////
 
 	private boolean[][] matriz = new boolean[10][7];
 	private String[] personas = new String[10];
 	private String[] hobbies = { "AAAA", "BBBB", "CCCC", "DDDD", "EEEE", "FFFF", "GGGG" };
 	private int personasLength= this.personas.length;
+	
+//////Constructores///////
+
+	/**
+	 * Constructor vacío que llama al método de rellenar la matriz
+	 */
+	
 	public Matriz() {
-		//fillPersonasArray();
-		//fillMatrixBoolTec();
-		fillMatrixBoolRandom();
+		fillPersonasArray();
+		fillMatrixBoolTec();
+		//fillMatrixBoolRandom();
 
 	}
+	
+	/**
+	 * Constructor con un String de personas ya dado y llama al metodo de rellenar la matriz
+	 * @param names Este parámetro define los nombres de las personas que van a estar en la matriz
+	 */
+	
 	public Matriz ( String [] names) {
 		this.setPersonas(names);
+		fillMatrixBoolTec();
 	}
 
-//////Setters///
-	///// Matriz//////
+//////Getters y Setters///////
+	
+	 /**
+     * Metodo que regresa la matriz
+     * @return matriz 
+     */
+	
 	public boolean[][] getMatriz() {
 		return matriz;
 	}
+	
+	/**
+	 * Establece la matriz
+	 * @param matriz matriz que se va a establecer
+	 */
 
 	public void setMatriz(boolean[][] matriz) {
 		this.matriz = matriz;
 	}
+	
+	/**
+	 * Establece la matriz
+	 * @param person persona 
+	 * @param hobby hobby 
+	 * @param taste opinion de si le gusta o no el hobby dado
+	 */
 
-	public void setMatriz(int person, int hobbie, boolean taste) {
-		this.matriz[person][hobbie] = taste;
+	public void setMatriz(int person, int hobby, boolean taste) {
+		this.matriz[person][hobby] = taste;
 	}
 
-	///// Personas//////
+	 /**
+     * Devuelve el nombre de las personas
+     * @return personas nombre de las personas
+     */
+	
 	public String[] getPersonas() {
 		return personas;
 	}
+	
+	/**
+	 * Establece las personas
+	 * @param name nombre de la persona 
+	 * @param num posición donde va a ir en el array de las personas
+	 */
 
 	private void setPersonas(String name, int num) {
 		this.personas[num] = name;
 	}
+	
+	/**
+	 * Establece las personas
+	 * @param personas nombres de las personas 
+	 */
 
 	public void setPersonas(String[] personas) {
 		this.personas = personas.clone();
 	}
 
-	///// Hobbies//////
+
+	/**
+	 * Establece los hobbies
+	 * @param name nombre del hobby
+	 * @param num posición donde va a ir en el array de hobbies
+	 */
+	
 	private void setHobbies(String name, int num) {
 		this.hobbies[num] = name;
 	}
+	
+	/**
+	 * Establece los hobbies
+	 * @param name nombres de los hobbies
+	 */
+	
 	public void setHobbies(String[] name) {
 		this.hobbies = name.clone();
 	}
+	
+	 /**
+     * Devuelve una lista de hobbies
+     * @return personas nombre de las personas
+     */
 
 	public String getHobbies() {
 		String result="";
@@ -64,12 +135,18 @@ public class Matriz {
 		return result;
 	}
 
-//////////////ToString///////
+//////To String///////
+	
 	public String toString() {
 		return "   personas=" + Arrays.toString(personas) + ", hobbies=" + Arrays.toString(hobbies) + "]";
 	}
 
-//////Methods///
+//////Methods//////
+	
+	/**
+	 * Método para rellenar la matriz de forma aleatoria
+	 */
+
 	private void fillMatrixBoolRandom() {
 		int matrixLength = this.matriz.length;
 		int matrixColLength = this.matriz[1].length;
@@ -88,6 +165,10 @@ public class Matriz {
 
 	}
 
+	/**
+	 * Método para rellenar la matriz por teclado
+	 */
+	
 	private void fillMatrixBoolTec() {
 		int matrixLength = this.matriz.length;
 		int matrixColLength = this.matriz[0].length;
@@ -109,9 +190,12 @@ public class Matriz {
 
 		}
 
-		tec.nextLine();
 
 	}
+	
+	/**
+	 * Método para rellenar el array de personas por teclado
+	 */
 
 	private void fillPersonasArray() {
 		int arrayLength = this.personas.length;
@@ -143,6 +227,10 @@ public class Matriz {
 		}
 
 	}
+	
+	/**
+	 * Método para rellenar el array de hobbies por teclado
+	 */
 
 	private void fillHobbiesArray() {
 		int arrayLength = this.hobbies.length;
@@ -173,6 +261,10 @@ public class Matriz {
 		}
 	}
 
+	/**
+	 * Método para mostrar la matriz
+	 */
+	
 	public void muestraMatrix() {
 		int i, j;
 		for (i = 0; i < matriz.length; i++) {
@@ -183,15 +275,33 @@ public class Matriz {
 		System.out.println("");
 	}
 
-	// metodo para saber si un String contiene numeros o no
+	
+	/**
+	 *  Método para saber si un String contiene numeros o no
+	 *  @param s cadena para saber si contiene numeros o no
+	 * @return <ul>
+     *  <li>true: Si contiene numeros</li>
+     *  <li>false: Si no contiene numeros</li>
+     *  </ul>
+	 */
+	
 	public boolean isNumeric(String s) {
 		return s != null && s.matches("[-+]?\\d*\\.?\\d+");
 	}
+	
+	/**
+	 *  Método para saber si dos personas son afines
+	 *  @param name1 nombre de la primera persona a comparar
+	 *  @param name2 nombre de la segunda persona a comparar
+	 * @return <ul>
+     *  <li>true: Si son afines</li>
+     *  <li>false: Si no son afines</li>
+     *  </ul>
+	 */
 
-	// metodo para saber si dos personas son afines
-	public void esAfin(String name1, String  name2) {
+	public boolean esAfin(String name1, String  name2) {
+		boolean afin=false;
 		int count = 0;
-		boolean afin = false;
 		int indexPersona1= this.searchPersonas(name1);
 		int indexPersona2= this.searchPersonas(name2);
 		ArrayList<Integer>afinIndexHobbies= new ArrayList<Integer>();
@@ -203,18 +313,30 @@ public class Matriz {
 				}
 			}
 			if (count >= 3) {
-				afin = true;
 				System.out.println(this.personas[indexPersona1]+" es afin con "+this.personas[indexPersona2] +" y concuerdan en ");
 				for(int index: afinIndexHobbies) {
 					System.out.print(" | " + this.hobbies[index]+ " | ");
+					 afin=true;
 				}
 			} else {
-				afin = false;
 				System.out.println(this.personas[indexPersona1]+" no es afin con "+this.personas[indexPersona2]);
+				 afin=false;
 			}
+			return afin;
 
 	}
-	////Metodo que comprueba si los paramentros de entrada en las opiniones está bien
+	
+	/**
+	 *  Método que comprueba si los paramentros de entrada en las opiniones está bien
+	 *  @param opinion escribir "yes" o "no" dependiendo si le gusta o no
+	 *  @param i personas
+	 *  @param j hobbies
+	 * @return <ul>
+     *  <li>true: Si la opinion se escribe como se debe, es decir:"yes","no","y" o "n"</li>
+     *  <li>false: Si se escribe correctamente</li>
+     *  </ul>
+	 */
+	
 	public boolean controlOpinion(String opinion, int i, int j) {
 		boolean control = false;
 		// if para que solo pueda poner yes, y, no, n, si pone otra cosa entrará en
@@ -237,7 +359,18 @@ public class Matriz {
 		
 		
 	}
-	////Metodo que comprueba si el nombre que se intoduce se repite en el array o no
+	
+	/**
+	 * Método que comprueba si el nombre que se intoduce se repite en el array o no
+	 * @param arrayLength longitud de array
+	 * @param actualperson indice de la persona 
+	 * @param things array de personas
+	 * @return <ul>
+     *  <li>true: Si el nombre esta repetido</li>
+     *  <li>false: Si el nombre no esta repetido</li>
+     *  </ul>
+	 */
+
 	public boolean controlNoRepeatStringInArray(int arrayLength , int actualperson, String[]things) {
 		boolean namerep = false;
 		for (int j = 0; j < arrayLength; j++) {
@@ -250,6 +383,16 @@ public class Matriz {
 		}
 		return namerep;
 	}
+	
+	/**
+	 * Método para buscar personas
+	 * @param name nombre de la persona a buscar
+	 *  @return <ul>
+     *  <li>i: índice del mismo nombre que estamos buscando</li>
+     *  <li>null: Si el nombre no esta en el array de personas</li>
+     *  </ul>
+	 */
+	
 	public Integer searchPersonas(String name) {
 		boolean out=true;
 		for(int i =0; i<this.personasLength&&out;i++) {
