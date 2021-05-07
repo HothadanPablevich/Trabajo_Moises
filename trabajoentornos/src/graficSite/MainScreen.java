@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -15,22 +17,39 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.ChangeEvent;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
 
 public class MainScreen extends JFrame {
 
 	private JPanel contentPane;
-	protected JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
+	private JTextField[] textFieldArray = new JTextField[10]; 
 	protected static Matriz personas= new Matriz();
+	private DocumentListener textListen = new DocumentListener(){
 
+		@Override
+		public void insertUpdate(DocumentEvent e) {
+			// TODO Auto-generated method stub
+			JOptionPane.showMessageDialog(contentPane,e.getClass(),"Error",JOptionPane.ERROR_MESSAGE);
+		}
+
+		@Override
+		public void removeUpdate(DocumentEvent e) {
+			// TODO Auto-generated method stub
+			JOptionPane.showMessageDialog(contentPane,e.getClass(),"Error",JOptionPane.ERROR_MESSAGE);
+		}
+
+		@Override
+		public void changedUpdate(DocumentEvent e) {
+			// TODO Auto-generated method stub
+			JOptionPane.showMessageDialog(contentPane,e.getClass(),"Error",JOptionPane.ERROR_MESSAGE);
+		}
+		
+	};
 	/**
 	 * Launch the application.
 	 */
@@ -46,7 +65,19 @@ public class MainScreen extends JFrame {
 			}
 		});
 	}
-
+	private boolean controlNoRepeatStringInArray(int actualperson, String[]things) {
+		boolean namerep = false;
+		int arrayLength = things.length;
+		for (int j = 0; j < arrayLength; j++) {
+			// if para comparar un nombre con otro siempre y cuando i no sea igual a j para
+			// evitar errores
+			if (things[actualperson].equals(things[j]) && actualperson != j && things[actualperson]!=null) {
+				JOptionPane.showMessageDialog(contentPane,"Sos puto","Error",JOptionPane.ERROR_MESSAGE);
+				namerep = true;
+			}
+		}
+		return namerep;
+	}
 	/**
 	 * Create the frame.
 	 */
@@ -68,57 +99,58 @@ public class MainScreen extends JFrame {
 		personasHolder.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		personasHolder.setBounds(150, 38, 281, 70);
 		contentPane.add(personasHolder);
+		/////Text fields array////
 		
-		textField = new JTextField();
-		textField.setBounds(86, 119, 86, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+			textFieldArray[0] =  new JTextField();
+			textFieldArray[0].setBounds(86, 119, 86, 20);
+			contentPane.add(textFieldArray[0]);
+			textFieldArray[0].setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(86, 163, 86, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+			textFieldArray[1] =  new JTextField();
+			textFieldArray[1].setBounds(86, 163, 86, 20);
+			contentPane.add(textFieldArray[1]);
+			textFieldArray[1].setColumns(10);
+	
+			textFieldArray[2] =  new JTextField();
+			textFieldArray[2].setBounds(86, 213, 86, 20);
+			contentPane.add(textFieldArray[2]);
+			textFieldArray[2].setColumns(10);
+			
+			textFieldArray[3] =  new JTextField();
+			textFieldArray[3].setBounds(86, 260, 86, 20);
+			contentPane.add(textFieldArray[3]);
+			textFieldArray[3].setColumns(10);
+			
+			textFieldArray[4] =  new JTextField();
+			textFieldArray[4].setBounds(249, 119, 86, 20);
+			contentPane.add(textFieldArray[4]);
+			textFieldArray[4].setColumns(10);
+			
+			textFieldArray[5] =  new JTextField();
+			textFieldArray[5].setBounds(249, 163, 86, 20);
+			contentPane.add(textFieldArray[5]);
+			textFieldArray[5].setColumns(10);
+			
+			textFieldArray[6] =  new JTextField();
+			textFieldArray[6].setBounds(249, 213, 86, 20);
+			contentPane.add(textFieldArray[6]);
+			textFieldArray[6].setColumns(10);
+			
+			textFieldArray[7] =  new JTextField();
+			textFieldArray[7].setBounds(249, 260, 86, 20);
+			contentPane.add(textFieldArray[7]);
+			textFieldArray[7].setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(86, 213, 86, 20);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
-		
-		textField_3 = new JTextField();
-		textField_3.setBounds(86, 260, 86, 20);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(249, 119, 86, 20);
-		contentPane.add(textField_4);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(249, 163, 86, 20);
-		contentPane.add(textField_5);
-		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(249, 213, 86, 20);
-		contentPane.add(textField_6);
-		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(249, 260, 86, 20);
-		contentPane.add(textField_7);
-		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(412, 119, 86, 20);
-		contentPane.add(textField_8);
-		
-		textField_9 = new JTextField();
-		textField_9.setColumns(10);
-		textField_9.setBounds(412, 163, 86, 20);
-		contentPane.add(textField_9);
-		
+			textFieldArray[8] =  new JTextField();
+			textFieldArray[8].setBounds(412, 119, 86, 20);
+			contentPane.add(textFieldArray[8]);
+			textFieldArray[8].setColumns(10);
+			
+			textFieldArray[9] =  new JTextField();
+			textFieldArray[9].setBounds(412, 163, 86, 20);
+			contentPane.add(textFieldArray[9]);
+			textFieldArray[9].setColumns(10);
+		/////Fin text Array///
 		JLabel persona1Holder = new JLabel("Persona 1");
 		persona1Holder.setBounds(10, 122, 66, 14);
 		contentPane.add(persona1Holder);
@@ -160,20 +192,26 @@ public class MainScreen extends JFrame {
 		contentPane.add(persona10Holder);
 		
 		JButton sendButtonPersonas = new JButton("Send");
-		sendButtonPersonas.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String[] people= {textField.getText(), textField_1.getText(), textField_2.getText(), 
-						textField_3.getText(), textField_4.getText(), textField_5.getText(), textField_6.getText()};
-				MainScreen.personas.setPersonas(people);
-				
-			}
-		});
 		sendButtonPersonas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int textArrayLength = textFieldArray.length;
+				String[] people= new String[textArrayLength];
+				for(int i=0; i < textArrayLength; i++) {
+					people[i]=textFieldArray[i].getText();
+				}
+				JOptionPane.showMessageDialog(contentPane,e.getSource(),"Error",JOptionPane.ERROR_MESSAGE);
+				MainScreen.personas.setPersonas(people);
+				DefaultHobbiesOrPersonal pag2 = new DefaultHobbiesOrPersonal();
+				pag2.setVisible(true);
 			}
 		});
+		
 		sendButtonPersonas.setBounds(378, 233, 89, 23);
 		contentPane.add(sendButtonPersonas);
+		for(int i =0 ; i< textFieldArray.length;i++) {
+			textFieldArray[i].getDocument().addDocumentListener(textListen);
+		}
+		
+		
 	}
 }

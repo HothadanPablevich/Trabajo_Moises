@@ -27,8 +27,8 @@ public class Matriz {
 	 */
 	
 	public Matriz() {
-		fillPersonasArray();
-		fillMatrixBoolTec();
+		//fillPersonasArray();
+		//fillMatrixBoolTec();
 		//fillMatrixBoolRandom();
 
 	}
@@ -65,13 +65,13 @@ public class Matriz {
 	
 	/**
 	 * Establece la matriz
-	 * @param person persona 
+	 * @param persona persona 
 	 * @param hobby hobby 
 	 * @param taste opinion de si le gusta o no el hobby dado
 	 */
 
-	public void setMatriz(int person, int hobby, boolean taste) {
-		this.matriz[person][hobby] = taste;
+	public void setMatriz(int persona, int hobby, boolean taste) {
+		this.matriz[persona][hobby] = taste;
 	}
 
 	 /**
