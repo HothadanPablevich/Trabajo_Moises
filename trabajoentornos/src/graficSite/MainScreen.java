@@ -23,6 +23,9 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class MainScreen extends JFrame {
 
@@ -30,23 +33,30 @@ public class MainScreen extends JFrame {
 	private JTextField[] textFieldArray = new JTextField[10]; 
 	protected static Matriz personas= new Matriz();
 	private DocumentListener textListen = new DocumentListener(){
-
+		
 		@Override
 		public void insertUpdate(DocumentEvent e) {
 			// TODO Auto-generated method stub
-			JOptionPane.showMessageDialog(contentPane,e.getClass(),"Error",JOptionPane.ERROR_MESSAGE);
+			int index= (int)e.getDocument().getProperty("index");
+			String[] compare = new String[textFieldArray.length];
+			for(int i=0; i<compare.length;i++) {
+				compare[i]= textFieldArray[i].getText();
+			}
+			if(controlNoRepeatStringInArray(index,compare)) {
+			//textFieldArray[index].setText("");
+			}
 		}
 
 		@Override
 		public void removeUpdate(DocumentEvent e) {
 			// TODO Auto-generated method stub
-			JOptionPane.showMessageDialog(contentPane,e.getClass(),"Error",JOptionPane.ERROR_MESSAGE);
+			
 		}
 
 		@Override
 		public void changedUpdate(DocumentEvent e) {
 			// TODO Auto-generated method stub
-			JOptionPane.showMessageDialog(contentPane,e.getClass(),"Error",JOptionPane.ERROR_MESSAGE);
+			
 		}
 		
 	};
@@ -199,19 +209,22 @@ public class MainScreen extends JFrame {
 				for(int i=0; i < textArrayLength; i++) {
 					people[i]=textFieldArray[i].getText();
 				}
-				JOptionPane.showMessageDialog(contentPane,e.getSource(),"Error",JOptionPane.ERROR_MESSAGE);
 				MainScreen.personas.setPersonas(people);
 				DefaultHobbiesOrPersonal pag2 = new DefaultHobbiesOrPersonal();
+				dispose();
+				System.out.println(personas.toString());
+				pag2.setDefaultCloseOperation(HIDE_ON_CLOSE);
 				pag2.setVisible(true);
+				
 			}
 		});
 		
 		sendButtonPersonas.setBounds(378, 233, 89, 23);
 		contentPane.add(sendButtonPersonas);
 		for(int i =0 ; i< textFieldArray.length;i++) {
+			textFieldArray[i].getDocument().putProperty("index", i);
 			textFieldArray[i].getDocument().addDocumentListener(textListen);
 		}
-		
 		
 	}
 }

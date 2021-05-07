@@ -11,6 +11,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import trabajoentornos.Matriz;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 public class DefaultHobbiesOrPersonal extends JFrame {
 
 	private JPanel contentPane;
@@ -55,16 +57,31 @@ public class DefaultHobbiesOrPersonal extends JFrame {
 		contentPane.add(selectHolder);
 		
 		JButton btnNewButton = new JButton("Por defecto");
+		
 		btnNewButton.setBounds(191, 264, 103, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Personalizar");
+		
 		btnNewButton_1.setBounds(348, 264, 113, 23);
 		contentPane.add(btnNewButton_1);
 		
 		JLabel defaultHobbies = new JLabel(persona.getHobbies());
 		defaultHobbies.setBounds(155, 108, 335, 14);
 		contentPane.add(defaultHobbies);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HobbiesInput pagInsertHobbies = new HobbiesInput();
+				pagInsertHobbies.setVisible(true);
+				dispose();
+				System.out.println(MainScreen.personas.toString());
+			}
+		});
 	}
 
 }
