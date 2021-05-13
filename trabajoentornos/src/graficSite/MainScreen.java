@@ -14,36 +14,88 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.TextListener;
+import java.net.http.WebSocket.Listener;
+
 import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.text.JTextComponent;
+
+import org.w3c.dom.Document;
+
 import javax.swing.event.ChangeEvent;
 import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.Color;
 
 public class MainScreen extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField[] textFieldArray = new JTextField[10]; 
 	protected static Matriz personas= new Matriz();
-	private DocumentListener textListen = new DocumentListener(){
+	private JButton sendButtonPersonas = new JButton("Send");
+	private String[] compare =  new String[textFieldArray.length];
+	private FocusAdapter textAreaListener = new FocusAdapter() {
 		
+		@Override
+		public void focusLost(FocusEvent e) {
+			javax.swing.text.Document textField=((JTextComponent) e.getComponent()).getDocument();
+			int index = (int) textField.getProperty("index");
+			int comapareLength= compare.length;
+			for(int i=0; i<comapareLength;i++) {
+				compare[i] = textFieldArray[i].getText();
+			}
+			if(Functions.controlNoRepeatStringInArray(index,compare)) {
+				JOptionPane.showMessageDialog(contentPane,"El nombre "+compare[index]+
+						" ya está elegido, escriba uno diferente","Error",JOptionPane.ERROR_MESSAGE);
+				textFieldArray[index].setText("");
+				}
+		}
+	};
+	private DocumentListener textAreaListenerKeys = new DocumentListener() {
+
 		@Override
 		public void insertUpdate(DocumentEvent e) {
 			// TODO Auto-generated method stub
-			int index= (int)e.getDocument().getProperty("index");
-			String[] compare = new String[textFieldArray.length];
-			for(int i=0; i<compare.length;i++) {
-				compare[i]= textFieldArray[i].getText();
+			int index= (int) e.getDocument().getProperty("index");
+			compare[index]= textFieldArray[index].getText();
+			if(Functions.controlNoRepeatStringInArray(index,compare)) {
+				textFieldArray[index].setForeground(new Color(255, 255, 255));
+				textFieldArray[index].setBackground(Color.RED);
+				sendButtonPersonas.setEnabled(false);
 			}
-			if(controlNoRepeatStringInArray(index,compare)) {
-			//textFieldArray[index].setText("");
+			else {
+				textFieldArray[index].setForeground(new Color(0, 0, 0));
+				textFieldArray[index].setBackground(Color.WHITE);
+				sendButtonPersonas.setEnabled(true);
+			}
+			int cont=0;
+			for (String name: compare) {
+				if(name!=null) {
+					if(name.isBlank()||name.isEmpty()) {
+						cont++;
+					}
+				}
+				else if(name==null) {
+					cont++;
+				}
+				System.out.println(cont);
+			}
+			if (cont>0) {
+				sendButtonPersonas.setEnabled(false);
+			}
+			else {
+				sendButtonPersonas.setEnabled(true);
 			}
 		}
 
@@ -58,8 +110,10 @@ public class MainScreen extends JFrame {
 			// TODO Auto-generated method stub
 			
 		}
-		
+
 	};
+
+	
 	/**
 	 * Launch the application.
 	 */
@@ -74,19 +128,6 @@ public class MainScreen extends JFrame {
 				}
 			}
 		});
-	}
-	private boolean controlNoRepeatStringInArray(int actualperson, String[]things) {
-		boolean namerep = false;
-		int arrayLength = things.length;
-		for (int j = 0; j < arrayLength; j++) {
-			// if para comparar un nombre con otro siempre y cuando i no sea igual a j para
-			// evitar errores
-			if (things[actualperson].equals(things[j]) && actualperson != j && things[actualperson]!=null) {
-				JOptionPane.showMessageDialog(contentPane,"Sos puto","Error",JOptionPane.ERROR_MESSAGE);
-				namerep = true;
-			}
-		}
-		return namerep;
 	}
 	/**
 	 * Create the frame.
@@ -201,9 +242,10 @@ public class MainScreen extends JFrame {
 		persona10Holder.setBounds(346, 166, 66, 14);
 		contentPane.add(persona10Holder);
 		
-		JButton sendButtonPersonas = new JButton("Send");
+		
 		sendButtonPersonas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				int textArrayLength = textFieldArray.length;
 				String[] people= new String[textArrayLength];
 				for(int i=0; i < textArrayLength; i++) {
@@ -212,7 +254,6 @@ public class MainScreen extends JFrame {
 				MainScreen.personas.setPersonas(people);
 				DefaultHobbiesOrPersonal pag2 = new DefaultHobbiesOrPersonal();
 				dispose();
-				System.out.println(personas.toString());
 				pag2.setDefaultCloseOperation(HIDE_ON_CLOSE);
 				pag2.setVisible(true);
 				
@@ -220,10 +261,12 @@ public class MainScreen extends JFrame {
 		});
 		
 		sendButtonPersonas.setBounds(378, 233, 89, 23);
+		sendButtonPersonas.setEnabled(false);
 		contentPane.add(sendButtonPersonas);
 		for(int i =0 ; i< textFieldArray.length;i++) {
 			textFieldArray[i].getDocument().putProperty("index", i);
-			textFieldArray[i].getDocument().addDocumentListener(textListen);
+			textFieldArray[i].addFocusListener((textAreaListener));
+			textFieldArray[i].getDocument().addDocumentListener(textAreaListenerKeys);
 		}
 		
 	}

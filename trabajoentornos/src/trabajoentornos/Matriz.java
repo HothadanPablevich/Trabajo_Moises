@@ -127,12 +127,8 @@ public class Matriz {
      * @return personas nombre de las personas
      */
 
-	public String getHobbies() {
-		String result="";
-		for(String hobbi: this.hobbies) {
-			result+=" | "+hobbi+" | "; 
-		}
-		return result;
+	public String[] getHobbies() {
+		return hobbies;
 	}
 
 //////To String///////

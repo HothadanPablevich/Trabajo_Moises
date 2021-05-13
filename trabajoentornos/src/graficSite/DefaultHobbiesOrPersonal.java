@@ -52,29 +52,38 @@ public class DefaultHobbiesOrPersonal extends JFrame {
 		contentPane.add(tittle);
 		
 		JLabel selectHolder = new JLabel("\u00BFPrefieres los hobbies por defecto o los tuyos propios?");
+		selectHolder.setHorizontalAlignment(SwingConstants.CENTER);
 		selectHolder.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		selectHolder.setBounds(79, 151, 501, 66);
 		contentPane.add(selectHolder);
 		
-		JButton btnNewButton = new JButton("Por defecto");
+		JButton defaultButton = new JButton("Por defecto");
 		
-		btnNewButton.setBounds(191, 264, 103, 23);
-		contentPane.add(btnNewButton);
+		defaultButton.setBounds(191, 264, 103, 23);
+		contentPane.add(defaultButton);
 		
-		JButton btnNewButton_1 = new JButton("Personalizar");
+		JButton persButton = new JButton("Personalizar");
 		
-		btnNewButton_1.setBounds(348, 264, 113, 23);
-		contentPane.add(btnNewButton_1);
-		
-		JLabel defaultHobbies = new JLabel(persona.getHobbies());
+		persButton.setBounds(348, 264, 113, 23);
+		contentPane.add(persButton);
+		String[] hobbies = persona.getHobbies();
+		String hobbiesText="";
+		for(String hobby : hobbies) {
+			hobbiesText += "|"+hobby+"|";
+		}
+		JLabel defaultHobbies = new JLabel(hobbiesText);
 		defaultHobbies.setBounds(155, 108, 335, 14);
+		defaultHobbies.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(defaultHobbies);
-		btnNewButton.addActionListener(new ActionListener() {
+		defaultButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				GustosPersonas pagInsertHobbies = new GustosPersonas();
+				pagInsertHobbies.setVisible(true);
+				dispose();
+				System.out.println(MainScreen.personas.toString());
 			}
 		});
-		btnNewButton_1.addActionListener(new ActionListener() {
+		persButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				HobbiesInput pagInsertHobbies = new HobbiesInput();
 				pagInsertHobbies.setVisible(true);
