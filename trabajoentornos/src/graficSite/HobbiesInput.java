@@ -11,7 +11,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.JTextComponent;
 
-import trabajoentornos.Matriz;
+import Logic.Functions;
+import Logic.MatchFinderLogic;
 
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
@@ -37,7 +38,7 @@ public class HobbiesInput extends JFrame {
 	private JPanel contentPane;
 	private JTextField[] textFieldArray = new JTextField[7];
 	JButton sendButtonHobbie = new JButton("Send");
-	protected static Matriz personas = MainScreen.personas;
+	protected static MatchFinderLogic personas = MainScreen.personas;
 	private String[] compare= new String[personas.getHobbies().length];
 	private FocusAdapter textAreaListener = new FocusAdapter() {
 		@Override
@@ -49,7 +50,7 @@ public class HobbiesInput extends JFrame {
 				compare[i] = textFieldArray[i].getText();
 			}
 			if(Functions.controlNoRepeatStringInArray(index,compare)) {
-				JOptionPane.showMessageDialog(contentPane,"El nombre "+compare[index]+
+				JOptionPane.showMessageDialog(contentPane,"El hobby "+compare[index]+
 						" ya está elegido, escriba uno diferente","Error",JOptionPane.ERROR_MESSAGE);
 				textFieldArray[index].setText("");
 				}
@@ -62,16 +63,6 @@ public class HobbiesInput extends JFrame {
 			// TODO Auto-generated method stub
 			int index= (int) e.getDocument().getProperty("index");
 			compare[index]= textFieldArray[index].getText();
-			if(Functions.controlNoRepeatStringInArray(index,compare)) {
-				textFieldArray[index].setForeground(new Color(255, 255, 255));
-				textFieldArray[index].setBackground(Color.RED);
-				sendButtonHobbie.setEnabled(false);
-			}
-			else {
-				textFieldArray[index].setForeground(new Color(0, 0, 0));
-				textFieldArray[index].setBackground(Color.WHITE);
-				sendButtonHobbie.setEnabled(true);
-			}
 			int cont=0;
 			for (String name: compare) {
 				if(name!=null) {
@@ -90,20 +81,89 @@ public class HobbiesInput extends JFrame {
 			else {
 				sendButtonHobbie.setEnabled(true);
 			}
+			if(Functions.controlNoRepeatStringInArray(index,compare)) {
+				textFieldArray[index].setForeground(new Color(255, 255, 255));
+				textFieldArray[index].setBackground(Color.RED);
+				sendButtonHobbie.setEnabled(false);
+			}
+			else {
+				textFieldArray[index].setForeground(new Color(0, 0, 0));
+				textFieldArray[index].setBackground(Color.WHITE);
+				
+			}
 		}
 
 		@Override
 		public void removeUpdate(DocumentEvent e) {
 			// TODO Auto-generated method stub
+			int index= (int) e.getDocument().getProperty("index");
+			compare[index]= textFieldArray[index].getText();
 			
+			int cont=0;
+			for (String name: compare) {
+				if(name!=null) {
+					if(name.isBlank()||name.isEmpty()) {
+						cont++;
+					}
+				}
+				else if(name==null) {
+					cont++;
+				}
+				System.out.println(cont);
+			}
+			if (cont>0) {
+				sendButtonHobbie.setEnabled(false);
+			}
+			else {
+				sendButtonHobbie.setEnabled(true);
+			}
+			if(Functions.controlNoRepeatStringInArray(index,compare)) {
+				textFieldArray[index].setForeground(new Color(255, 255, 255));
+				textFieldArray[index].setBackground(Color.RED);
+				sendButtonHobbie.setEnabled(false);
+			}
+			else {
+				textFieldArray[index].setForeground(new Color(0, 0, 0));
+				textFieldArray[index].setBackground(Color.WHITE);
+				
+			}
 		}
 
 		@Override
 		public void changedUpdate(DocumentEvent e) {
 			// TODO Auto-generated method stub
+			int index= (int) e.getDocument().getProperty("index");
+			compare[index]= textFieldArray[index].getText();
 			
+			int cont=0;
+			for (String name: compare) {
+				if(name!=null) {
+					if(name.isBlank()||name.isEmpty()) {
+						cont++;
+					}
+				}
+				else if(name==null) {
+					cont++;
+				}
+				System.out.println(cont);
+			}
+			if (cont>0) {
+				sendButtonHobbie.setEnabled(false);
+			}
+			else {
+				sendButtonHobbie.setEnabled(true);
+			}
+		if(Functions.controlNoRepeatStringInArray(index,compare)) {
+			textFieldArray[index].setForeground(new Color(255, 255, 255));
+			textFieldArray[index].setBackground(Color.RED);
+			sendButtonHobbie.setEnabled(false);
 		}
-
+		else {
+			textFieldArray[index].setForeground(new Color(0, 0, 0));
+			textFieldArray[index].setBackground(Color.WHITE);
+			sendButtonHobbie.setEnabled(true);
+		}
+		}
 	};
 
 	/**
@@ -226,6 +286,7 @@ public class HobbiesInput extends JFrame {
 					hobbies[i] = textFieldArray[i].getText();
 
 				}
+				MainScreen.personas.setHobbies(hobbies);
 				GustosPersonas pag2 = new GustosPersonas();
 				dispose();
 				pag2.setDefaultCloseOperation(HIDE_ON_CLOSE);

@@ -51,24 +51,40 @@ public class GustosPersonas extends JFrame {
 	 */
 	public GustosPersonas() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 503, 323);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		JButton sendGustosButton = new JButton("Send");
 		
 		GridBagConstraints gbc_sendGustosButton = new GridBagConstraints();
-		gbc_sendGustosButton.insets = new Insets(0, 0, 5, 5);
-		gbc_sendGustosButton.gridx = 12;
+		gbc_sendGustosButton.insets = new Insets(0, 0, 5, 0);
+		gbc_sendGustosButton.gridx = 14;
 		gbc_sendGustosButton.gridy = 9;
 		contentPane.add(sendGustosButton, gbc_sendGustosButton);
+		sendGustosButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				for(int i =0; i<gustosCheckBoxes.length;i++) {
+					for(int j=0; j<gustosCheckBoxes[i].length;j++) {
+						if(gustosCheckBoxes[i][j].isSelected()) {
+							gustosBooleanMatriz[i][j]=true;
+						}
+						else {
+							gustosBooleanMatriz[i][j]=false;
+						}
+					}
+				}
+				System.out.println(gustosBooleanMatriz[0][0]);
+				MainScreen.personas.setMatriz(gustosBooleanMatriz);
+			}
+		});
 		//////Check box Matrix////
 		for(int i=0; i<personasLabels.length;i++) {
 			
@@ -100,21 +116,6 @@ public class GustosPersonas extends JFrame {
 			contentPane.add(personasLabels[i], personasGrid[i]);
 		}
 		gustosCheckBoxes[1][1].isSelected();
-		sendGustosButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				for(int i =0; i<gustosCheckBoxes.length;i++) {
-					for(int j=0; j<gustosCheckBoxes[i].length;j++) {
-						if(gustosCheckBoxes[i][j].isSelected()) {
-							gustosBooleanMatriz[i][j]=true;
-						}
-						else {
-							gustosBooleanMatriz[i][j]=false;
-						}
-					}
-				}
-				MainScreen.personas.setMatriz(gustosBooleanMatriz);
-			}
-		});
 		
 	}
 

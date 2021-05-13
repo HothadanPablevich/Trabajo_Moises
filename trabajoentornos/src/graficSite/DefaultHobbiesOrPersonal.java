@@ -6,17 +6,20 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Logic.MatchFinderLogic;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
-import trabajoentornos.Matriz;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 public class DefaultHobbiesOrPersonal extends JFrame {
 
 	private JPanel contentPane;
-	private Matriz persona= MainScreen.personas;
+	private MatchFinderLogic persona= MainScreen.personas;
 
 	/**
 	 * Launch the application.
@@ -72,7 +75,7 @@ public class DefaultHobbiesOrPersonal extends JFrame {
 			hobbiesText += "|"+hobby+"|";
 		}
 		JLabel defaultHobbies = new JLabel(hobbiesText);
-		defaultHobbies.setBounds(155, 108, 335, 14);
+		defaultHobbies.setBounds(155, 108, 400, 14);
 		defaultHobbies.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(defaultHobbies);
 		defaultButton.addActionListener(new ActionListener() {

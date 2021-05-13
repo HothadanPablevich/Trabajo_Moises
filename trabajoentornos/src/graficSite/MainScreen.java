@@ -1,5 +1,4 @@
 package graficSite;
-import trabajoentornos.Matriz;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -30,6 +29,8 @@ import javax.swing.text.JTextComponent;
 
 import org.w3c.dom.Document;
 
+import Logic.MatchFinderLogic;
+
 import javax.swing.event.ChangeEvent;
 import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
@@ -37,12 +38,13 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.Color;
+import Logic.Functions;
 
 public class MainScreen extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField[] textFieldArray = new JTextField[10]; 
-	protected static Matriz personas= new Matriz();
+	protected static MatchFinderLogic personas= new MatchFinderLogic();
 	private JButton sendButtonPersonas = new JButton("Send");
 	private String[] compare =  new String[textFieldArray.length];
 	private FocusAdapter textAreaListener = new FocusAdapter() {
@@ -69,16 +71,6 @@ public class MainScreen extends JFrame {
 			// TODO Auto-generated method stub
 			int index= (int) e.getDocument().getProperty("index");
 			compare[index]= textFieldArray[index].getText();
-			if(Functions.controlNoRepeatStringInArray(index,compare)) {
-				textFieldArray[index].setForeground(new Color(255, 255, 255));
-				textFieldArray[index].setBackground(Color.RED);
-				sendButtonPersonas.setEnabled(false);
-			}
-			else {
-				textFieldArray[index].setForeground(new Color(0, 0, 0));
-				textFieldArray[index].setBackground(Color.WHITE);
-				sendButtonPersonas.setEnabled(true);
-			}
 			int cont=0;
 			for (String name: compare) {
 				if(name!=null) {
@@ -97,18 +89,88 @@ public class MainScreen extends JFrame {
 			else {
 				sendButtonPersonas.setEnabled(true);
 			}
+			if(Functions.controlNoRepeatStringInArray(index,compare)) {
+				textFieldArray[index].setForeground(new Color(255, 255, 255));
+				textFieldArray[index].setBackground(Color.RED);
+				sendButtonPersonas.setEnabled(false);
+			}
+			else {
+				textFieldArray[index].setForeground(new Color(0, 0, 0));
+				textFieldArray[index].setBackground(Color.WHITE);
+				
+			}
 		}
 
 		@Override
 		public void removeUpdate(DocumentEvent e) {
 			// TODO Auto-generated method stub
+			int index= (int) e.getDocument().getProperty("index");
+			compare[index]= textFieldArray[index].getText();
 			
+			int cont=0;
+			for (String name: compare) {
+				if(name!=null) {
+					if(name.isBlank()||name.isEmpty()) {
+						cont++;
+					}
+				}
+				else if(name==null) {
+					cont++;
+				}
+				System.out.println(cont);
+			}
+			if (cont>0) {
+				sendButtonPersonas.setEnabled(false);
+			}
+			else {
+				sendButtonPersonas.setEnabled(true);
+			}
+			if(Functions.controlNoRepeatStringInArray(index,compare)) {
+				textFieldArray[index].setForeground(new Color(255, 255, 255));
+				textFieldArray[index].setBackground(Color.RED);
+				sendButtonPersonas.setEnabled(false);
+			}
+			else {
+				textFieldArray[index].setForeground(new Color(0, 0, 0));
+				textFieldArray[index].setBackground(Color.WHITE);
+				
+			}
 		}
 
 		@Override
 		public void changedUpdate(DocumentEvent e) {
 			// TODO Auto-generated method stub
+			int index= (int) e.getDocument().getProperty("index");
+			compare[index]= textFieldArray[index].getText();
 			
+			int cont=0;
+			for (String name: compare) {
+				if(name!=null) {
+					if(name.isBlank()||name.isEmpty()) {
+						cont++;
+					}
+				}
+				else if(name==null) {
+					cont++;
+				}
+				System.out.println(cont);
+			}
+			if (cont>0) {
+				sendButtonPersonas.setEnabled(false);
+			}
+			else {
+				sendButtonPersonas.setEnabled(true);
+			}
+		if(Functions.controlNoRepeatStringInArray(index,compare)) {
+			textFieldArray[index].setForeground(new Color(255, 255, 255));
+			textFieldArray[index].setBackground(Color.RED);
+			sendButtonPersonas.setEnabled(false);
+		}
+		else {
+			textFieldArray[index].setForeground(new Color(0, 0, 0));
+			textFieldArray[index].setBackground(Color.WHITE);
+			sendButtonPersonas.setEnabled(true);
+		}
 		}
 
 	};
@@ -140,7 +202,7 @@ public class MainScreen extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel tittle = new JLabel("Macth Finder");
+		JLabel tittle = new JLabel("Match Finder");
 		tittle.setBounds(5, 5, 552, 41);
 		tittle.setHorizontalAlignment(SwingConstants.CENTER);
 		tittle.setFont(new Font("Tahoma", Font.PLAIN, 34));
