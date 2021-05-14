@@ -83,6 +83,10 @@ public class GustosPersonas extends JFrame {
 				}
 				System.out.println(gustosBooleanMatriz[0][0]);
 				MainScreen.personas.setMatriz(gustosBooleanMatriz);
+				EsAfin afin = new EsAfin();
+				dispose();
+				afin.setDefaultCloseOperation(HIDE_ON_CLOSE);
+				afin.setVisible(true);
 			}
 		});
 		//////Check box Matrix////
