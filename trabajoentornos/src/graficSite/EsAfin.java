@@ -29,28 +29,7 @@ public class EsAfin extends JFrame {
 
 	private JPanel contentPane;
 	protected static MatchFinderLogic personas= MainScreen.personas;
-	private DocumentListener textListen = new DocumentListener(){
-		
-		@Override
-		public void insertUpdate(DocumentEvent e) {
-			// TODO Auto-generated method stub
-			
-			
-		}
-
-		@Override
-		public void removeUpdate(DocumentEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void changedUpdate(DocumentEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-	};
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -67,12 +46,6 @@ public class EsAfin extends JFrame {
 		});
 	}
 	
-	private boolean esAfin(String name1, String  name2) {
-		boolean afin=false;
-	
-			return afin;
-
-	}
 
 	/**
 	 * Create the frame.
@@ -88,8 +61,6 @@ public class EsAfin extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Comprobar si dos personas son afines");
 		lblNewLabel_1.setBounds(78, 11, 241, 26);
 		contentPane.add(lblNewLabel_1);
-		
-	
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(personas.getPersonas()));
@@ -124,18 +95,10 @@ public class EsAfin extends JFrame {
 					result_label.setText("No son afines");
 				}
 				
-				
-				
-				
-				
 			}
 		});
 		btnNewButton.setBounds(107, 133, 114, 23);
 		contentPane.add(btnNewButton);
-		
-		
-
-
 		
 	}
 }

@@ -4,7 +4,24 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Esta clase contienen los metodos que usa la interfaz gráfica de nuestra aplicacion
+ * @author Babel
+ * @version 1.2
+ */
+
 public class Functions {
+	
+	/**
+	 * Método que comprueba si el nombre que se intoduce se repite en el array o no
+	 * @param actualperson indice de la persona 
+	 * @param compare array de personas
+	 * @return <ul>
+	 *  <li>true: Si el nombre esta repetido</li>
+	 *  <li>false: Si el nombre no esta repetido</li>
+	 *  </ul>
+	 */
+	
 	public static boolean controlNoRepeatStringInArray(int actualperson, String[]compare) {
 		boolean namerep = false;
 		int arrayLength = compare.length;
@@ -23,24 +40,24 @@ public class Functions {
 		return namerep;
 	}
 
-public static boolean controlNoRepeatStringInArray(int arrayLength , int actualperson, String[]things) {
-	boolean namerep = false;
-	for (int j = 0; j < arrayLength; j++) {
-		// if para comparar un nombre con otro siempre y cuando i no sea igual a j para
-		// evitar errores
-		if (things[actualperson].equals(things[j]) && actualperson != j) {
-			System.out.println("Write a non-repeated name");
-			namerep = true;
-		}
-	}
-	return namerep;
-	}
+
+
+
+/**
+ *  Método para saber si dos personas son afines
+ *  @param name1 nombre de la primera persona a comparar
+ *  @param name2 nombre de la segunda persona a comparar
+ *  @param matriz objeto donde esta guardado los gustos
+ * @return <ul>
+ *  <li>true: Si son afines</li>
+ *  <li>false: Si no son afines</li>
+ *  </ul>
+ */
+
 
 public static boolean esAfin(int name1, int  name2, MatchFinderLogic matriz) {
 	boolean afin=false;
 	int count = 0;
-	//int indexPersona1= searchPersonas(name1, matriz);
-	//int indexPersona2= searchPersonas(name2, matriz);
 	ArrayList<Integer>afinIndexHobbies= new ArrayList<Integer>();
 	int matrizLength = matriz.getMatriz()[name1].length;
 		for (int j = 0; j < matrizLength; j++) {
@@ -60,16 +77,18 @@ public static boolean esAfin(int name1, int  name2, MatchFinderLogic matriz) {
 
 }
 
-public Integer searchPersonas(String name, MatchFinderLogic personas) {
-	boolean out=true;
-	int lengthPersonas=personas.getPersonas().length;
-	for(int i =0; i<lengthPersonas&&out;i++) {
-		if(name.equalsIgnoreCase(personas.getPersonas()[i])) {
-			out=false;
-			return i;
-		}	
-	}
-	return null;
+
+/**
+ *  Método para saber si un String contiene numeros o no
+ *  @param s cadena para saber si contiene numeros o no
+ * @return <ul>
+ *  <li>true: Si contiene numeros</li>
+ *  <li>false: Si no contiene numeros</li>
+ *  </ul>
+ */
+
+public boolean isNumeric(String s) {
+	return s != null && s.matches("[-+]?\\d*\\.?\\d+");
 }
 
 
