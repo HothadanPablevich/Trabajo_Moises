@@ -77,19 +77,4 @@ public static boolean esAfin(int name1, int  name2, MatchFinderLogic matriz) {
 
 }
 
-
-/**
- *  Método para saber si un String contiene numeros o no
- *  @param s cadena para saber si contiene numeros o no
- * @return <ul>
- *  <li>true: Si contiene numeros</li>
- *  <li>false: Si no contiene numeros</li>
- *  </ul>
- */
-
-public boolean isNumeric(String s) {
-	return s != null && s.matches("[-+]?\\d*\\.?\\d+");
-}
-
-
 }
