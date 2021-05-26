@@ -59,30 +59,31 @@ public class EsAfin extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Comprobar si dos personas son afines");
-		lblNewLabel_1.setBounds(78, 11, 241, 26);
+		lblNewLabel_1.setBounds(83, 27, 241, 26);
 		contentPane.add(lblNewLabel_1);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(personas.getPersonas()));
-		comboBox.setBounds(10, 84, 107, 22);
+		comboBox.setBounds(37, 84, 107, 22);
 		contentPane.add(comboBox);
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(personas.getPersonas()));
-		comboBox_1.setBounds(205, 84, 114, 22);
+		comboBox_1.setSelectedIndex(1);
+		comboBox_1.setBounds(237, 84, 107, 22);
 		contentPane.add(comboBox_1);
 		
 		JLabel lblNewLabel = new JLabel("Es Afin con");
-		lblNewLabel.setBounds(129, 88, 66, 14);
+		lblNewLabel.setBounds(161, 88, 66, 14);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_2 = new JLabel("?");
-		lblNewLabel_2.setBounds(323, 88, 46, 14);
+		lblNewLabel_2.setBounds(354, 88, 46, 14);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel result_label = new JLabel("");
 		result_label.setHorizontalAlignment(SwingConstants.CENTER);
-		result_label.setBounds(52, 167, 225, 61);
+		result_label.setBounds(73, 151, 225, 61);
 		contentPane.add(result_label);
 
 		JButton btnNewButton = new JButton("Comprobar");
@@ -97,7 +98,7 @@ public class EsAfin extends JFrame {
 				
 			}
 		});
-		btnNewButton.setBounds(107, 133, 114, 23);
+		btnNewButton.setBounds(129, 117, 114, 23);
 		contentPane.add(btnNewButton);
 		
 	}
