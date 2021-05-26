@@ -36,11 +36,7 @@ public class Functions {
 				namerep = true;
 			}
 		}
-		if (namerep) {
-			// System.out.println( actualperson );
-
-		}
-
+		
 		return namerep;
 	}
 
