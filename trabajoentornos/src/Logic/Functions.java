@@ -82,7 +82,7 @@ public class Functions {
 	 * @param matriz objeto donde esta guardado los gustos
 	 * @return
 	 *         <ul>
-	 *         <li>ArrayList<String> con los hobbies favorables</li>
+	 *         <li>ArrayList con los hobbies favorables</li>
 	 *         </ul>
 	 */
 	public static ArrayList<String> esAfinConNombres(int name1, int name2, MatchFinderLogic matriz) {
@@ -105,7 +105,7 @@ public class Functions {
 	 * @param matriz objeto donde esta guardado los gustos
 	 * @return
 	 *         <ul>
-	 *         <li>ArrayList<String> con los hobbies no favorables</li>
+	 *         <li>ArrayList con los hobbies no favorables</li>
 	 *         </ul>
 	 */
 	public static ArrayList<String> noEsAfinConNombres(int name1, int name2, MatchFinderLogic matriz) {
