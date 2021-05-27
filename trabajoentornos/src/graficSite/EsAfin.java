@@ -51,6 +51,7 @@ public class EsAfin extends JFrame {
 	 * Create the frame.
 	 */
 	public EsAfin() {
+		setTitle("Match Finder");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 416, 295);
 		contentPane = new JPanel();

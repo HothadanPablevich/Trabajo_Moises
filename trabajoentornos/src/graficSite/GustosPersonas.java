@@ -50,6 +50,7 @@ public class GustosPersonas extends JFrame {
 	 * Create the frame.
 	 */
 	public GustosPersonas() {
+		setTitle("Match Finder");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 503, 323);
 		contentPane = new JPanel();

@@ -41,6 +41,7 @@ public class DefaultHobbiesOrPersonal extends JFrame {
 	 * Create the frame.
 	 */
 	public DefaultHobbiesOrPersonal() {
+		setTitle("Match Finder");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 683, 444);
 		contentPane = new JPanel();
