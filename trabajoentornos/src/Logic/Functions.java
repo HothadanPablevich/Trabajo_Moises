@@ -56,18 +56,14 @@ public class Functions {
 	public static boolean esAfin(int name1, int name2, MatchFinderLogic matriz) {
 		boolean afin = false;
 		int count = 0;
-		ArrayList<Integer> afinIndexHobbies = new ArrayList<Integer>();
 		int matrizLength = matriz.getMatriz()[name1].length;
 		for (int j = 0; j < matrizLength; j++) {
-			if (matriz.getMatriz()[name1][j] == matriz.getMatriz()[name2][j]) {
+			if (matriz.getMatriz()[name1][j] == matriz.getMatriz()[name2][j]&&matriz.getMatriz()[name1][j]==true) {
 				count++;
-				afinIndexHobbies.add(j);
 			}
 		}
 		if (count >= 3) {
-			for (int index : afinIndexHobbies) {
 				afin = true;
-			}
 		} else {
 			afin = false;
 		}

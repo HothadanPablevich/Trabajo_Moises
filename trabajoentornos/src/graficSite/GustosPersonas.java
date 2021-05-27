@@ -28,6 +28,8 @@ public class GustosPersonas extends JFrame {
 	private JCheckBox[][] gustosCheckBoxes= new JCheckBox[personasLabels.length][hobbiesLabels.length];
 	private GridBagConstraints[] gustosGrid= new GridBagConstraints[personasLabels.length*hobbiesLabels.length];
 	private boolean[][] gustosBooleanMatriz = new boolean[personasLabels.length][hobbiesLabels.length];
+	private int personasLabelsLength = personasLabels.length;
+	private int hobbiesLabelsLength = hobbiesLabels.length;
 	
 
 	/**
@@ -72,8 +74,10 @@ public class GustosPersonas extends JFrame {
 		contentPane.add(sendGustosButton, gbc_sendGustosButton);
 		sendGustosButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				for(int i =0; i<gustosCheckBoxes.length;i++) {
-					for(int j=0; j<gustosCheckBoxes[i].length;j++) {
+				int gustosM1Length = gustosCheckBoxes.length;
+				int gustosM2Length = gustosCheckBoxes[0].length;
+				for(int i =0; i<gustosM1Length;i++) {
+					for(int j=0; j<gustosM2Length;j++) {
 						if(gustosCheckBoxes[i][j].isSelected()) {
 							gustosBooleanMatriz[i][j]=true;
 						}
@@ -91,9 +95,9 @@ public class GustosPersonas extends JFrame {
 			}
 		});
 		//////Check box Matrix////
-		for(int i=0; i<personasLabels.length;i++) {
+		for(int i=0; i<personasLabelsLength;i++) {
 			
-			for(int j=0; j<hobbiesLabels.length;j++) {
+			for(int j=0; j<hobbiesLabelsLength;j++) {
 				gustosCheckBoxes[i][j]= new JCheckBox("");
 				gustosGrid[i] = new GridBagConstraints();
 				gustosGrid[i].insets= new Insets(0, 0, 5, 5);
@@ -103,7 +107,7 @@ public class GustosPersonas extends JFrame {
 			}
 		}
 		/////Jlabel Array Hobbies/////
-		for(int i=0; i<hobbiesLabels.length;i++) {
+		for(int i=0; i<hobbiesLabelsLength;i++) {
 			hobbiesLabels[i]= new JLabel(hobbies[i]);
 			hobbiesGrid[i]= new GridBagConstraints();
 			hobbiesGrid[i].insets = new Insets(0, 0, 5, 5);
@@ -112,7 +116,7 @@ public class GustosPersonas extends JFrame {
 			contentPane.add(hobbiesLabels[i], hobbiesGrid[i]);
 		}
 		///////Jlabel array Personas////
-		for(int i=0; i<personasLabels.length;i++) {
+		for(int i=0; i<personasLabelsLength;i++) {
 			personasLabels[i]= new JLabel(personas[i]);
 			personasGrid[i]= new GridBagConstraints();
 			personasGrid[i].insets = new Insets(0, 0, 5, 5);

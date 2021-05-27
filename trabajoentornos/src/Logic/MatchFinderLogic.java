@@ -13,18 +13,39 @@ import java.util.Scanner;
  */
 
 public class MatchFinderLogic {
-	/**
-	 * tec Recibe input del usuario
-	 * 
-	 */
 
-	public static Scanner tec = new Scanner(System.in);
+
+
 
 //////Campos de la clase///////
+	
+	/**
+	 * Numero total de personas
+	 */
 
-	private boolean[][] matriz = new boolean[10][7];
+	
+	private final int NUM_PERSONAS=10;
+	/**
+	 * Numero total de hobbies
+	 */
+	private final int NUM_HOBBIES=7;
+	
+	/**
+	 * Almacena las aficiones de todas las personas
+	 */
 
-	private String[] personas = new String[10];
+	
+	private boolean[][] matriz = new boolean[NUM_PERSONAS][NUM_HOBBIES];
+
+	/**
+	 * Almacena el nombre de las personas
+	 */
+	
+	private String[] personas = new String[NUM_PERSONAS];
+	
+	/**
+	 * Almacena el nombre de los hobbies
+	 */
 
 	private String[] hobbies = { "Viajar", "Cine", "Leer", "Videojuegos", "Conducir", "Animales", "Fiestas" };
 
