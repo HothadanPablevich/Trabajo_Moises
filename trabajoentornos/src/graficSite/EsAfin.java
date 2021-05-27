@@ -24,6 +24,9 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import java.awt.Color;
+import javax.swing.JTextPane;
+import java.awt.Font;
 
 public class EsAfin extends JFrame {
 
@@ -82,25 +85,42 @@ public class EsAfin extends JFrame {
 		lblNewLabel_2.setBounds(354, 88, 46, 14);
 		contentPane.add(lblNewLabel_2);
 		
-		JLabel result_label = new JLabel("");
-		result_label.setHorizontalAlignment(SwingConstants.CENTER);
-		result_label.setBounds(73, 151, 225, 61);
-		contentPane.add(result_label);
-
+		JTextPane resultPane = new JTextPane();
+		resultPane.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		resultPane.setEditable(false);
+		resultPane.setBounds(37, 154, 320, 91);
+		contentPane.add(resultPane);
 		JButton btnNewButton = new JButton("Comprobar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				if (Functions.esAfin(comboBox.getSelectedIndex(), comboBox_1.getSelectedIndex(),personas)) {
-					result_label.setText("Son afines");
+					resultPane.setText("Son afines");
 				}else {
-					result_label.setText("No son afines");
+					resultPane.setText("No son afines");
 				}
+				ArrayList<String> gustan= Functions.esAfinConNombres(comboBox.getSelectedIndex(), comboBox_1.getSelectedIndex(),personas);
+				ArrayList<String> nogustan= Functions.noEsAfinConNombres(comboBox.getSelectedIndex(), comboBox_1.getSelectedIndex(),personas);
+				String result = resultPane.getText();
+				result+= "\n";
+				result += "Les gustan a los dos :";
+				for(int i=0; i< gustan.size();i++) {
+					result+=" "+gustan.get(i)+ " ";
+				}
+				result+="\n";
+				 result+= " No les gustan a los dos :";
+				for(int i=0; i< nogustan.size();i++) {
+					result+=" "+nogustan.get(i)+ " ";
+				}
+				resultPane.setText(result);
+			
 				
 			}
 		});
 		btnNewButton.setBounds(129, 117, 114, 23);
 		contentPane.add(btnNewButton);
+		
+		
 		
 	}
 }
